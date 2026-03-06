@@ -41,6 +41,8 @@ export class App implements OnInit, OnDestroy {
   healthState: HealthState = 'checking';
   healthText = 'Checking API availability...';
   lastHealthCheckAt: Date | null = null;
+  showApiBaseUrlSection = true;
+  showThemeSection = true;
 
   backgroundStartColor = '#f4f7ff';
   backgroundEndColor = '#eefcf6';
@@ -140,6 +142,14 @@ export class App implements OnInit, OnDestroy {
     this.cardColor = '#ffffff';
     this.primaryButtonColor = '#2563eb';
     this.cardRadiusPx = 16;
+  }
+
+  toggleApiBaseUrlSection(): void {
+    this.showApiBaseUrlSection = !this.showApiBaseUrlSection;
+  }
+
+  toggleThemeSection(): void {
+    this.showThemeSection = !this.showThemeSection;
   }
 
   private scheduleNextHealthCheck(delayMs: number): void {

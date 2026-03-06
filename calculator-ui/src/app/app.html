@@ -3,10 +3,26 @@
     <h1>Super Awesome Calculator</h1>
     <p class="subtitle">Powered by the Four Function Calculator API</p>
 
-    <label>
-      API Base URL
-      <input type="text" [(ngModel)]="apiBaseUrl" placeholder="http://localhost:5050" />
-    </label>
+    <section class="collapsible-section">
+      <div class="section-header">
+        <h2>API Base URL</h2>
+        <button
+          type="button"
+          class="secondary section-toggle"
+          (click)="toggleApiBaseUrlSection()"
+          [attr.aria-expanded]="showApiBaseUrlSection"
+        >
+          {{ showApiBaseUrlSection ? 'Hide' : 'Show' }}
+        </button>
+      </div>
+
+      @if (showApiBaseUrlSection) {
+        <label>
+          API Base URL
+          <input type="text" [(ngModel)]="apiBaseUrl" placeholder="http://localhost:5050" />
+        </label>
+      }
+    </section>
 
     <div class="health-row">
       <span class="health-label">API Health:</span>
@@ -19,36 +35,49 @@
     </div>
     <p class="health-meta">Last checked: {{ lastHealthCheckText }}</p>
 
-    <section class="theme-section">
-      <h2>Customize Theme</h2>
-      <div class="theme-grid">
-        <label>
-          Background Start
-          <input type="color" [(ngModel)]="backgroundStartColor" />
-        </label>
-
-        <label>
-          Background End
-          <input type="color" [(ngModel)]="backgroundEndColor" />
-        </label>
-
-        <label>
-          Card Color
-          <input type="color" [(ngModel)]="cardColor" />
-        </label>
-
-        <label>
-          Primary Button
-          <input type="color" [(ngModel)]="primaryButtonColor" />
-        </label>
-
-        <label>
-          Card Radius (px)
-          <input type="number" min="0" max="40" [(ngModel)]="cardRadiusPx" />
-        </label>
+    <section class="theme-section collapsible-section">
+      <div class="section-header">
+        <h2>Customize Theme</h2>
+        <button
+          type="button"
+          class="secondary section-toggle"
+          (click)="toggleThemeSection()"
+          [attr.aria-expanded]="showThemeSection"
+        >
+          {{ showThemeSection ? 'Hide' : 'Show' }}
+        </button>
       </div>
 
-      <button type="button" class="secondary" (click)="resetTheme()">Reset Theme</button>
+      @if (showThemeSection) {
+        <div class="theme-grid">
+          <label>
+            Background Start
+            <input type="color" [(ngModel)]="backgroundStartColor" />
+          </label>
+
+          <label>
+            Background End
+            <input type="color" [(ngModel)]="backgroundEndColor" />
+          </label>
+
+          <label>
+            Card Color
+            <input type="color" [(ngModel)]="cardColor" />
+          </label>
+
+          <label>
+            Primary Button
+            <input type="color" [(ngModel)]="primaryButtonColor" />
+          </label>
+
+          <label>
+            Card Radius (px)
+            <input type="number" min="0" max="40" [(ngModel)]="cardRadiusPx" />
+          </label>
+        </div>
+
+        <button type="button" class="secondary" (click)="resetTheme()">Reset Theme</button>
+      }
     </section>
 
     <div class="row">

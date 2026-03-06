@@ -1,4 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { NgStyle } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { finalize, timeout } from 'rxjs';
@@ -24,7 +25,7 @@ type HealthState = 'checking' | 'online' | 'offline';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule],
+  imports: [FormsModule, NgStyle],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -40,6 +41,12 @@ export class App implements OnInit, OnDestroy {
   healthState: HealthState = 'checking';
   healthText = 'Checking API availability...';
   lastHealthCheckAt: Date | null = null;
+
+  backgroundStartColor = '#f4f7ff';
+  backgroundEndColor = '#eefcf6';
+  cardColor = '#ffffff';
+  primaryButtonColor = '#2563eb';
+  cardRadiusPx = 16;
 
   private readonly healthyPollIntervalMs = 30000;
   private readonly unhealthyPollBaseIntervalMs = 15000;
@@ -115,6 +122,24 @@ export class App implements OnInit, OnDestroy {
     }
 
     return this.lastHealthCheckAt.toLocaleTimeString();
+  }
+
+  get themeStyleVars(): Record<string, string> {
+    return {
+      '--bg-start': this.backgroundStartColor,
+      '--bg-end': this.backgroundEndColor,
+      '--card-bg': this.cardColor,
+      '--primary-color': this.primaryButtonColor,
+      '--card-radius': `${this.cardRadiusPx}px`
+    };
+  }
+
+  resetTheme(): void {
+    this.backgroundStartColor = '#f4f7ff';
+    this.backgroundEndColor = '#eefcf6';
+    this.cardColor = '#ffffff';
+    this.primaryButtonColor = '#2563eb';
+    this.cardRadiusPx = 16;
   }
 
   private scheduleNextHealthCheck(delayMs: number): void {

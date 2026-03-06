@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FourFunctionCalculator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0fa1fbb6aa45c0472e4be434210cce17cd21e6b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("FourFunctionCalculator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FourFunctionCalculator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

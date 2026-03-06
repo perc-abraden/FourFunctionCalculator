@@ -39,3 +39,4 @@ C:\Users\abraden\FourFunctionCalculator\bin\Debug\net10.0\calculator-ui\tsconfig
 C:\Users\abraden\FourFunctionCalculator\bin\Debug\net10.0\calculator-ui\tsconfig.spec.json
 C:\Users\abraden\FourFunctionCalculator\bin\Debug\net10.0\openapi.json
 C:\Users\abraden\FourFunctionCalculator\bin\Debug\net10.0\calculator-ui\dist\calculator-ui\prerendered-routes.json
+C:\Users\abraden\FourFunctionCalculator\obj\Debug\net10.0\FourFunctionCalculator.sourcelink.json

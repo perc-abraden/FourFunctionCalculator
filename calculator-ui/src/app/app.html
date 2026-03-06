@@ -1,4 +1,4 @@
-<main class="calculator-page">
+<main class="calculator-page" [ngStyle]="themeStyleVars">
   <section class="calculator-card">
     <h1>Super Awesome Calculator</h1>
     <p class="subtitle">Powered by the Four Function Calculator API</p>
@@ -18,6 +18,38 @@
       </button>
     </div>
     <p class="health-meta">Last checked: {{ lastHealthCheckText }}</p>
+
+    <section class="theme-section">
+      <h2>Customize Theme</h2>
+      <div class="theme-grid">
+        <label>
+          Background Start
+          <input type="color" [(ngModel)]="backgroundStartColor" />
+        </label>
+
+        <label>
+          Background End
+          <input type="color" [(ngModel)]="backgroundEndColor" />
+        </label>
+
+        <label>
+          Card Color
+          <input type="color" [(ngModel)]="cardColor" />
+        </label>
+
+        <label>
+          Primary Button
+          <input type="color" [(ngModel)]="primaryButtonColor" />
+        </label>
+
+        <label>
+          Card Radius (px)
+          <input type="number" min="0" max="40" [(ngModel)]="cardRadiusPx" />
+        </label>
+      </div>
+
+      <button type="button" class="secondary" (click)="resetTheme()">Reset Theme</button>
+    </section>
 
     <div class="row">
       <label>

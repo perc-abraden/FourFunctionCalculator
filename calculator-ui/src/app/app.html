@@ -1,0 +1,56 @@
+<main class="calculator-page">
+  <section class="calculator-card">
+    <h1>Super Awesome Calculator</h1>
+    <p class="subtitle">Powered by the Four Function Calculator API</p>
+
+    <label>
+      API Base URL
+      <input type="text" [(ngModel)]="apiBaseUrl" placeholder="http://localhost:5050" />
+    </label>
+
+    <div class="health-row">
+      <span class="health-label">API Health:</span>
+      <span class="health-pill" [class.online]="healthState === 'online'" [class.offline]="healthState === 'offline'" [class.checking]="healthState === 'checking'">
+        {{ healthText }}
+      </span>
+      <button type="button" class="secondary" (click)="checkApiHealth()" [disabled]="isLoading || healthState === 'checking'">
+        Recheck API
+      </button>
+    </div>
+    <p class="health-meta">Last checked: {{ lastHealthCheckText }}</p>
+
+    <div class="row">
+      <label>
+        First Number
+        <input type="number" [(ngModel)]="firstNumber" />
+      </label>
+
+      <label>
+        Operation
+        <select [(ngModel)]="selectedOperation">
+          <option value="add">Add</option>
+          <option value="subtract">Subtract</option>
+          <option value="multiply">Multiply</option>
+          <option value="divide">Divide</option>
+        </select>
+      </label>
+
+      <label>
+        Second Number
+        <input type="number" [(ngModel)]="secondNumber" />
+      </label>
+    </div>
+
+    <button type="button" (click)="calculate()" [disabled]="isLoading">
+      {{ isLoading ? 'Calculating...' : 'Calculate' }}
+    </button>
+
+    @if (resultText) {
+      <p class="result">{{ resultText }}</p>
+    }
+
+    @if (errorText) {
+      <p class="error">{{ errorText }}</p>
+    }
+  </section>
+</main>

@@ -1,0 +1,243 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Four Function Calculator API",
+    "version": "1.0.0",
+    "description": "A local REST API for a four-function calculator. Supports addition, subtraction, multiplication, and division."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5050",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Get API welcome information",
+        "operationId": "getWelcome",
+        "responses": {
+          "200": {
+            "description": "Welcome message and sample endpoints",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RootResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/calculator/add": {
+      "get": {
+        "summary": "Add two numbers",
+        "operationId": "add",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ParamA"
+          },
+          {
+            "$ref": "#/components/parameters/ParamB"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Addition result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/calculator/subtract": {
+      "get": {
+        "summary": "Subtract two numbers",
+        "operationId": "subtract",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ParamA"
+          },
+          {
+            "$ref": "#/components/parameters/ParamB"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subtraction result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/calculator/multiply": {
+      "get": {
+        "summary": "Multiply two numbers",
+        "operationId": "multiply",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ParamA"
+          },
+          {
+            "$ref": "#/components/parameters/ParamB"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Multiplication result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/calculator/divide": {
+      "get": {
+        "summary": "Divide two numbers",
+        "operationId": "divide",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ParamA"
+          },
+          {
+            "$ref": "#/components/parameters/ParamB"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Division result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Division by zero is not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "ParamA": {
+        "name": "a",
+        "in": "query",
+        "required": true,
+        "description": "First numeric value",
+        "schema": {
+          "type": "number",
+          "format": "double"
+        },
+        "example": 10
+      },
+      "ParamB": {
+        "name": "b",
+        "in": "query",
+        "required": true,
+        "description": "Second numeric value",
+        "schema": {
+          "type": "number",
+          "format": "double"
+        },
+        "example": 5
+      }
+    },
+    "schemas": {
+      "RootResponse": {
+        "type": "object",
+        "required": [
+          "message",
+          "endpoints"
+        ],
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Welcome to my super awesome calculator app!"
+          },
+          "endpoints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "/api/calculator/add?a=10&b=5",
+              "/api/calculator/subtract?a=10&b=5",
+              "/api/calculator/multiply?a=10&b=5",
+              "/api/calculator/divide?a=10&b=5"
+            ]
+          }
+        }
+      },
+      "OperationResult": {
+        "type": "object",
+        "required": [
+          "operation",
+          "a",
+          "b",
+          "result"
+        ],
+        "properties": {
+          "operation": {
+            "type": "string",
+            "example": "add"
+          },
+          "a": {
+            "type": "number",
+            "format": "double",
+            "example": 10
+          },
+          "b": {
+            "type": "number",
+            "format": "double",
+            "example": 5
+          },
+          "result": {
+            "type": "number",
+            "format": "double",
+            "example": 15
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Division by zero is not allowed."
+          }
+        }
+      }
+    }
+  }
+}
